@@ -9,10 +9,7 @@ func IsValid(s string) bool {
 	}
 	for _, r := range s {
 		if b, ok := mapping[r]; ok {
-			if len(stack) == 0 {
-				return false
-			}
-			if b != stack[len(stack)-1] {
+			if len(stack) == 0 || b != stack[len(stack)-1] {
 				return false
 			}
 			stack = stack[:len(stack)-1]

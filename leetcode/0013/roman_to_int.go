@@ -1,5 +1,7 @@
 package leetcode
 
+import "fmt"
+
 func RomanToInt(s string) int {
 	nums := map[rune]int{
 		'I': 1,
@@ -75,6 +77,28 @@ func RomanToIntOptimized(s string) int {
 			continue
 		}
 		sum += values[string(s[i])]
+	}
+	return sum
+}
+
+func RomanToIntRightToLeft(s string) int {
+	nums := map[rune]int{
+		'I': 1,
+		'V': 5,
+		'X': 10,
+		'L': 50,
+		'C': 100,
+		'D': 500,
+		'M': 1000,
+	}
+	sum := nums[rune(s[len(s)-1])]
+	for i := len(s) - 2; i >= 0; i-- {
+		fmt.Println(string(s[i]))
+		if nums[rune(s[i])] < nums[rune(s[i+1])] {
+			sum -= nums[rune(s[i])]
+		} else {
+			sum += nums[rune(s[i])]
+		}
 	}
 	return sum
 }

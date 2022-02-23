@@ -30,7 +30,7 @@ func dfs(node *TreeNode, low int, high int, ans *int) {
 	}
 }
 
-func rangeSumBSTIterative(root *TreeNode, low int, high int) int {
+func RangeSumBSTIterative(root *TreeNode, low int, high int) int {
 	ans := 0
 	var stack []*TreeNode
 	stack = append(stack, root)

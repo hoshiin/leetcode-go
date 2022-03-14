@@ -1,11 +1,8 @@
 package leetcode
 
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
+import "github.com/hoshiin/leetcode-go/structures"
 
-func MergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
+func MergeTwoLists(list1 *structures.ListNode, list2 *structures.ListNode) *structures.ListNode {
 	if list1 == nil {
 		return list2
 	} else if list2 == nil {

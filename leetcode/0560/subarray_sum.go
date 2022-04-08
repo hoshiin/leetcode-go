@@ -14,7 +14,7 @@ func SubarraySum(nums []int, k int) int {
 	return count
 }
 
-func subarraySumOptimized(nums []int, k int) int {
+func SubarraySumOptimized(nums []int, k int) int {
 	count, sum := 0, 0
 	mp := map[int]int{0: 1}
 	for i := 0; i < len(nums); i++ {

@@ -30,3 +30,51 @@ func dfs(grid [][]byte, r, c int) {
 	dfs(grid, r, c-1)
 	dfs(grid, r, c+1)
 }
+
+func NumIslandsUseBFS(grid [][]byte) int {
+	visited := make([][]bool, len(grid))
+	for i := range visited {
+		visited[i] = make([]bool, len(grid[i]))
+	}
+	result := 0
+	for i := 0; i < len(grid); i++ {
+		for j := 0; j < len(grid[0]); j++ {
+			if grid[i][j] == '1' && !visited[i][j] {
+				result++
+				bfs(grid, i, j, visited)
+			}
+		}
+	}
+	return result
+}
+
+func bfs(grid [][]byte, i, j int, visited [][]bool) {
+	var q []queue
+	q = append(q, queue{i, j})
+	for len(q) > 0 {
+		head := q[0]
+		row := head.row
+		col := head.col
+		q = q[1:]
+		if grid[row][col] == '1' && !visited[row][col] {
+			visited[row][col] = true
+			if row-1 >= 0 {
+				q = append(q, queue{row - 1, col})
+			}
+			if row+1 < len(grid) {
+				q = append(q, queue{row + 1, col})
+			}
+			if col-1 >= 0 {
+				q = append(q, queue{row, col - 1})
+			}
+			if col+1 < len(grid[0]) {
+				q = append(q, queue{row, col + 1})
+			}
+		}
+	}
+}
+
+type queue struct {
+	row int
+	col int
+}

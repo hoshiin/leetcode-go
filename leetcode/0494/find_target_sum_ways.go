@@ -17,4 +17,21 @@ func calculate(nums []int, count *int, i, sum, target int) {
 	}
 }
 
-// TODO: Dynamic Programming and DFS Solutions
+func FindTargetSumWaysWithDP(nums []int, S int) int {
+	sum := 0
+	for _, n := range nums {
+		sum += n
+	}
+	if S > sum || (sum+S)%2 == 1 || S+sum < 0 {
+		return 0
+	}
+	target := (S + sum) / 2
+	dp := make([]int, target+1)
+	dp[0] = 1
+	for _, n := range nums {
+		for i := target; i >= n; i-- {
+			dp[i] += dp[i-n]
+		}
+	}
+	return dp[target]
+}

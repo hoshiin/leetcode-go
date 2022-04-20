@@ -35,3 +35,28 @@ func FindTargetSumWaysWithDP(nums []int, S int) int {
 	}
 	return dp[target]
 }
+
+func FindTargetSumWaysDFS(nums []int, S int) int {
+	sums := make([]int, len(nums))
+	sums[len(nums)-1] = nums[len(nums)-1]
+	for i := len(nums) - 2; i > -1; i-- {
+		sums[i] = sums[i+1] + nums[i]
+	}
+	res := 0
+	dfsFindTargetSumWays(nums, 0, 0, S, &res, sums)
+	return res
+}
+
+func dfsFindTargetSumWays(nums []int, i, curSum, S int, res *int, sums []int) {
+	if i == len(nums) {
+		if curSum == S {
+			*res = *res + 1
+		}
+		return
+	}
+	if S-curSum > sums[i] {
+		return
+	}
+	dfsFindTargetSumWays(nums, i+1, curSum+nums[i], S, res, sums)
+	dfsFindTargetSumWays(nums, i+1, curSum-nums[i], S, res, sums)
+}

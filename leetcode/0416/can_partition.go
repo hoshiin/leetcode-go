@@ -52,3 +52,24 @@ func recursionUseMemo(nums []int, i, sum int, memo [][]bool) bool {
 	memo[i][sum] = res
 	return res
 }
+
+func CanPartitionDP(nums []int) bool {
+	sum := 0
+	for _, v := range nums {
+		sum += v
+	}
+	if sum%2 != 0 {
+		return false
+	}
+	target := sum / 2
+	dp := make([]bool, target+1)
+	for i := 0; i <= target; i++ {
+		dp[i] = (nums[0] == i)
+	}
+	for i := 1; i < len(nums); i++ {
+		for j := target; j >= nums[i]; j-- {
+			dp[j] = dp[j] || dp[j-nums[i]]
+		}
+	}
+	return dp[target]
+}

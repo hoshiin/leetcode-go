@@ -1,20 +1,18 @@
 package leetcode
 
-import "math"
+import (
+	"math"
 
-type TreeNode struct {
-	Val   int
-	Left  *TreeNode
-	Right *TreeNode
-}
+	"github.com/hoshiin/leetcode-go/structures"
+)
 
-func DiameterOfBinaryTree(root *TreeNode) int {
+func DiameterOfBinaryTree(root *structures.TreeNode) int {
 	diameter := 0
 	longestPath(root, &diameter)
 	return diameter
 }
 
-func longestPath(node *TreeNode, result *int) int {
+func longestPath(node *structures.TreeNode, result *int) int {
 	if node == nil {
 		return 0
 	}

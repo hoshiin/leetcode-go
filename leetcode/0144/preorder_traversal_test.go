@@ -13,7 +13,7 @@ func TestPreorderTraversal(t *testing.T) {
 		want []int
 	}{
 		{structures.NewTreeNode([]int{1, structures.NULL, 2, 3}), []int{1, 2, 3}},
-		{structures.NewTreeNode([]int{}), []int{}},
+		{structures.NewTreeNode([]int{}), nil},
 		{structures.NewTreeNode([]int{1}), []int{1}},
 	}
 	for _, tt := range tests {

@@ -25,3 +25,22 @@ func PreorderTraversal(root *structures.TreeNode) []int {
 	}
 	return result
 }
+
+func PreorderTraversalRecursive(root *structures.TreeNode) []int {
+	res := []int{}
+	preorderInternal(root, &res)
+	return res
+}
+
+func preorderInternal(root *structures.TreeNode, list *[]int) {
+	if root == nil {
+		return
+	}
+	*list = append(*list, root.Val)
+	if root.Left != nil {
+		preorderInternal(root.Left, list)
+	}
+	if root.Right != nil {
+		preorderInternal(root.Right, list)
+	}
+}

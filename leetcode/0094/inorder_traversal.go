@@ -18,3 +18,22 @@ func InorderTraversal(root *structures.TreeNode) []int {
 	}
 	return result
 }
+
+func InorderTraversalRecursive(root *structures.TreeNode) []int {
+	result := []int{}
+	inorderInternal(root, &result)
+	return result
+}
+
+func inorderInternal(root *structures.TreeNode, result *[]int) {
+	if root == nil {
+		return
+	}
+	if root.Left != nil {
+		inorderInternal(root.Left, result)
+	}
+	*result = append(*result, root.Val)
+	if root.Right != nil {
+		inorderInternal(root.Right, result)
+	}
+}

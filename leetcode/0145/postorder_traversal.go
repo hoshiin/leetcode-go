@@ -24,3 +24,22 @@ func PostorderTraversal(root *structures.TreeNode) []int {
 	}
 	return result
 }
+
+func PostorderTraversalRecursive(root *structures.TreeNode) []int {
+	result := []int{}
+	postorderInternal(root, &result)
+	return result
+}
+
+func postorderInternal(root *structures.TreeNode, result *[]int) {
+	if root == nil {
+		return
+	}
+	if root.Left != nil {
+		postorderInternal(root.Left, result)
+	}
+	if root.Right != nil {
+		postorderInternal(root.Right, result)
+	}
+	*result = append(*result, root.Val)
+}

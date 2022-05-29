@@ -40,3 +40,29 @@ func max(i, j int) int {
 	}
 	return i
 }
+
+func MaxProfitBottomUp(k int, prices []int) int {
+	dp := make([][][]int, len(prices)+1)
+	for i := range dp {
+		dp[i] = make([][]int, k+1)
+		for j := range dp[i] {
+			dp[i][j] = make([]int, 2)
+		}
+	}
+
+	for i := len(prices) - 1; i >= 0; i-- {
+		for transactionsRemaining := 1; transactionsRemaining <= k; transactionsRemaining++ {
+			for holding := 0; holding < 2; holding++ {
+				doNothing := dp[i+1][transactionsRemaining][holding]
+				doSomething := 0
+				if holding == 1 {
+					doSomething = prices[i] + dp[i+1][transactionsRemaining-1][0]
+				} else {
+					doSomething = -prices[i] + dp[i+1][transactionsRemaining][1]
+				}
+				dp[i][transactionsRemaining][holding] = max(doNothing, doSomething)
+			}
+		}
+	}
+	return dp[0][k][0]
+}

@@ -6,9 +6,6 @@ import (
 )
 
 func TestSpiralOrder(t *testing.T) {
-	type args struct {
-		matrix [][]int
-	}
 	tests := []struct {
 		matrix [][]int
 		want   []int

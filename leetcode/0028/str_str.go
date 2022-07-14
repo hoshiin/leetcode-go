@@ -5,7 +5,7 @@ func StrStr(haystack string, needle string) int {
 		return 0
 	}
 	length := len(needle)
-	for i := 0; i < len(haystack)-len(needle); i++ {
+	for i := 0; i <= len(haystack)-len(needle); i++ {
 		if haystack[i:i+length] == needle {
 			return i
 		}

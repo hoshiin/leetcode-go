@@ -31,3 +31,22 @@ func max(a, b int) int {
 	}
 	return a
 }
+
+func FindMaxConsecutiveOnesWindow(nums []int) int {
+	n := len(nums)
+	max, left, right := 0, 0, 0
+	for left < n && right < n {
+		for left < n && nums[left] == 0 {
+			left++
+		}
+		right = left
+		for right < n && nums[right] == 1 {
+			right++
+		}
+		if max < right-left {
+			max = right - left
+		}
+		left = right
+	}
+	return max
+}

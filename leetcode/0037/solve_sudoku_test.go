@@ -1,6 +1,9 @@
 package leetcode
 
-import "testing"
+import (
+	"reflect"
+	"testing"
+)
 
 func TestSolveSudoku(t *testing.T) {
 	tests := []struct {
@@ -32,7 +35,9 @@ func TestSolveSudoku(t *testing.T) {
 	for _, tt := range tests {
 		t.Run("", func(t *testing.T) {
 			SolveSudoku(tt.board)
-			t.Errorf("SolveSudoku() = %v, want %v", tt.board, tt.want)
+			if !reflect.DeepEqual(tt.board, tt.want) {
+				t.Errorf("SolveSudoku() = %v, want %v", tt.board, tt.want)
+			}
 		})
 	}
 }
